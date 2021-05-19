@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 40%;
+      width: 40%;
+    }
+
+
+button {
+    background-color: #584253; 
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;}
+</style>
+
+<img src="{{item.image.url}}">
+<hr>
+<a href="{%url 'single_list' pk=item.pk %}"><h5 class="card-title text-info" style="font-size: 30pt">{{ item.title }}</h5></a>
+<h5 class="card-title text-info" style="font-size: 25pt">{{ item.description_long }}</h5></a>
+<h2>Actual Price=Rs.{{item.price}}</h2>
+<h3>Discount=Rs.{{item.discount_price}}</h3>
+  <div class="w3-show-inline-block">
+    <div class="w3-bar">
+      {% if user.is_authenticated %}
+      <a href ="{%url 'add_to_cart' pk=item.pk%}"><button>ADD TO CART</button>
+        {% else %}
+        <a href ="/login"><button>ADD TO CART</button>
+          {% endif %}
+        <a href="{% url 'food_list' pk=item.category.title %}"><button>BACK TO CATEGORIES</button></a>
+    </div>
+    </div>
+
+</html>

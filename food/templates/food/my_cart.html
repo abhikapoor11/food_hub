@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- <div class="container">
+                <div class="col-sm-4">
+                        <div class="shadow-sm bg-white rounded" style="box-shadow: 0rem 0rem 0.4rem 0.4rem rgba(0,0,0,0.15)!important;border-radius: 1rem!important;">
+                        <div class="card" style="margin-right:auto;margin-bottom: auto;margin-left:auto;transition: transform 0.2s ease; box-shadow: 0 4px 6px 0 rgba(0,0, 0, 0.5);border-radius: 0.5rem; border: 0; margin-bottom: 0.5em;">
+                            <img src="{{item.item.image.url}}" class="centered-rounded"  width="350" height="300">
+                                <a href="#"><h3 class="card-title text-info" style="font-size: 22pt">{{ item.item.title }}</h3></a>
+                                <p class="card-text"style="font-size: 14pt">&#8377; {{item.get_total_item_price}}</p>
+                                <p class="card-text"style="font-size: 14pt"><h4>Quantity</h4> {{item.quantity}}</p>
+                            
+                        </div>
+                    </div></div>
+    
+            </div> -->
+<style>
+*{
+box-sizing: border-box;
+}
+               
+html,
+body {
+width: 100%;
+height: 100%;
+margin: 0;
+background-color: #7EC855;
+font-family: 'Roboto', sans-serif;
+}
+
+.shopping-cart {
+width: 750px;
+height: 423px;
+margin: 80px auto;
+background: #FFFFFF;
+box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+border-radius: 6px;
+               
+display: flex;
+flex-direction: column;
+}
+
+.title {
+    height: 70px;
+    border-bottom: 3px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #44628a;
+    font-size: 18px;
+    font-weight: 400;
+  }
+   
+  .item {
+    padding: 20px 30px;
+    height: 120px;
+    display: flex;
+  }
+   
+  .item:nth-child(3) {
+    border-top:  1px solid #E1E8EE;
+    border-bottom:  1px solid #E1E8EE;
+  }
+
+  .buttons {
+    position: relative;
+    padding-top: 30px;
+    margin-right: 60px;
+  }
+  .delete-btn,
+  .like-btn {
+    display: inline-block;
+    Cursor: pointer;
+  }
+  .delete-btn {
+    width: 18px;
+    height: 17px;
+    background: url(&amp;quot;delete-icn.svg&amp;quot;) no-repeat center;
+  }
+   
+  .like-btn {
+    position: absolute;
+    top: 9px;
+    left: 15px;
+    background: url('twitter-heart.png');
+    width: 60px;
+    height: 60px;
+    background-size: 2900%;
+    background-repeat: no-repeat;
+  }
+
+  .is-active {
+    animation-name: animate;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    animation-fill-mode: forwards;
+  }
+   
+  @keyframes animate {
+    0%   { background-position: left;  }
+    50%  { background-position: right; }
+    100% { background-position: right; }
+  }
+  
+  .image {
+    margin-right: 50px;
+  }
+   
+  
+  .description {
+      margin-left: -30px;
+    padding-top: 0px;
+    margin-right: 0px;
+    
+  }
+   
+  .description span {
+    display: block;
+    font-size: 48px;
+    color: #43484D;
+    font-weight: 400;
+  }
+   
+  
+  .quantity {
+    padding-top: 200px;
+    margin-right: 50px;
+  }
+  .quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+  }
+   
+  button[class*=btn] {
+    width: 30px;
+    height: 30px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  .minus-btn img {
+    margin-bottom: 3px;
+  }
+  .plus-btn img {
+    margin-top: 2px;
+  }
+   
+  button:focus,
+  input:focus {
+    outline:0;
+  }
+  
+  button {
+    background-color: #e6dddd; 
+    border: none;
+    color: black;
+    height: 70px;
+    margin-bottom: 350px;
+    margin-left: -150px;
+    padding: 5px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;}
+
+  .total-price {
+    width: 83px;
+    padding-top: 215px;
+    text-align: center;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+  }
+  
+  @media (max-width: 800px) {
+    .shopping-cart {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+    .item {
+      height: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .image img {
+      width: 80%;
+    }
+    .image,
+    .quantity,
+    .description {
+      width: 80%;
+      text-align: center;
+      margin: 8px 0;
+    }
+    .buttons {
+      margin-right: 20px;
+    }
+  }  
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 300%;
+      width: 100%;
+    }
+
+
+btton {
+    background-color: #584253; 
+    border: none;
+    margin-left: -50px;
+    -ms-transform: translate(370%);
+    transform: translate(370%);
+
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;}
+
+</style>
+
+
+
+{% for item in order.items.all %}  
+<div class="shopping-cart">
+    <!-- Title -->
+    <div class="title">
+      <h4>{{item.item.title}}</h4>
+    </div>
+    <!-- Product #1 -->
+    <div class="item">
+      <div class="buttons">
+        <span class="delete-btn"></span>
+        <span class="like-btn"></span>
+      </div>
+   
+      <div class="image">
+        <img src="{{item.item.image.url}}" alt="" height="350" width="250" >
+      </div>
+   
+      <div class="description">
+        <h3>{{item.item.category.title}}</h3>
+        <p>{{item.amount}}</p>
+      </div>
+
+      
+   
+      <div class="quantity">
+        <p>Quantity:{{item.quantity}}</p>
+        <!-- <button class="plus-btn" type="button" name="button">
+          <img src="plus.svg" alt="" />
+        </button>
+        <input type="text" name="name" value="1">
+        <button class="minus-btn" type="button" name="button">
+          <img src="minus.svg" alt="" />
+        </button> -->
+      </div>
+
+  
+   
+      <div class="total-price">{{item.price}}</div>
+      <a href ="{%url 'remove_single_item_from_cart' pk=item.pk%}"><button>REMOVE ITEM</button></a>
+    </div>
+</div>
+{% endfor %}
+<h2 style="text-align:center;">YOUR TOTAL PAYABE AMOUNT IS RS. 0{{order.amount}} </h2>
+<a href ="{%url 'checkout' %}"><btton>CHECKOUT</btton>
+
+</body>
